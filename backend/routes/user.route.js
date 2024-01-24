@@ -8,7 +8,7 @@ const userRoute=express.Router();
 userRoute.use(cookie_parser());
 
 userRoute.post('/register',async(req,res)=>{
-    const {name,age,gender,email,pass}=req.body;
+    const {name,email,pass}=req.body;
      try{
         if(!/[A-Z]/.test(pass)||!/\d/.test(pass)||!/[!@#$%^&*]/.test(pass)||!(pass.length>=8)){
            return res.json({mesg:"Incorrect pass word format"})
@@ -21,7 +21,7 @@ userRoute.post('/register',async(req,res)=>{
              if(err){
                 res.status(400).json({error:err})
              }else{
-                const user= new UserModel({name,age,gender,email,pass:hash});
+                const user= new UserModel({name,email,pass:hash});
                 await user.save();
                 res.status(200).json({mesg:'user registered'})
              }

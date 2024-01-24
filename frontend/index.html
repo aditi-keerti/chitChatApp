@@ -3,9 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>chit-chat</title>
 </head>
 <body>
-    
+   <label for="name">Name</label>
+   <input type="text" id="name" placeholder="Enter Name">
+   <div class="mesg-box">
+    <input type="text" id="mesg-input" placeholder="Enter message...">
+    <button onclick="sendMessage()">Send</button>
+    <ul id="chat-mesgs"></ul>
+   </div>
+   <script>
+    const socket = new WebSocket('ws://localhost:8080');
+    let userName = '';
+
+    // Prompt the user for their name when the page loads
+    function promptForName() {
+        userName = prompt("Please enter your name:");
+        if (!userName) {
+            userName = "Anonymous";
+        }
+    }
+
+    function appendMessage(message) {
+        const mesgList = document.getElementById('chat-mesgs');
+        const li = document.createElement('li');
+        li.textContent = message;
+        mesgList.appendChild(li);
+    }
+
+    socket.addEventListener('open', (event) => {
+        // Prompt for the user's name when the WebSocket connection is open
+        promptForName();
+    });
+
+    socket.addEventListener('message', (event) => {
+        appendMessage(event.data);
+    });
+
+    function sendMessage() {
+        const mesg_input = document.getElementById("mesg-input");
+        const mesg = `${userName}: ${mesg_input.value}`;
+
+        socket.send(mesg);
+        mesg_input.value = '';
+    }
+
+    // Call promptForName when the page loads
+    promptForName();
+   </script>
 </body>
 </html>
