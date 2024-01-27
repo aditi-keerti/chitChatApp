@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chit chat</title>
+    <!-- font awesome link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 class="title">Chit-Chat</h1>
+    <div class="main">
+        <div class="name">
+           <span><i class="far fa-user"></i></span>
+           <input type="text" id="name-input" value="anonymous" maxlength="20">
+    </div>
+    <ul class="mesg-container" id="mesg-container">
+        <li class="mesg-left">
+            <p class="mesg">Lorem <span>bluebird . 26 july 10:40</span>
+            </p>
+        </li>
+        <li class="mesg-right">
+            <p class="mesg">Lorem <span>bluebird . 26 july 10:45</span>
+            </p>
+        </li>
+        <li class="mesg-feedback">
+            <p class="feedback" id="feedback">
+               killer is typing a message
+            </p>
+        </li>
+    </ul>
+    <form  class="mesg-form" id="mesg-form">
+        <input type="text" name="mesg" id="mesg-input" class=" mesg-input">
+        <div class="v-divider">
+           
+        </div>
+        <button type="submit" id="send-btn" class="send-btn">
+            send <span><i class="fas fa-paper-plane"></i></span>
+        </button>
+    </form>
+   
+</div>
+<h3 class="clients-total" id="clients-total">Total Clients : 2</h3>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js" integrity="sha512-hUhvpC5f8cgc04OZb55j0KNGh4eh7dLxd/dPSJ5VyzqDWxsayYbojWyl5Tkcgrmb/RVKCRJI1jNlRbVP4WWC4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="main.js"></script>
+</body>
+</html>

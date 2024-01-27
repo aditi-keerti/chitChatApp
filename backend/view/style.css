@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Poppins:wght@400;600&display=swap');
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+body{
+    font-family: 'Open Sans', sans-serif;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+    display: grid;
+    place-items: center;
+    background-color: #ebebeb;
+}
+.title{
+    margin: 20px 0px;
+
+}
+.main{
+    border: 8px solid #dddddd;
+    border-radius: 24px;
+    overflow: hidden;
+}
+.name{
+    display: flex;
+    font-size: 32px;
+    font-weight: 700;
+    padding: 8px 16px;
+    color: #7e7e7e;
+    background-color: #ebebeb;
+}
+.name span{
+    color: #bbb;
+}
+#name-input{
+    font-size: 24px;
+    font-weight: 700;
+    color: #7e7e7e;
+    flex-grow: 1;
+    border: none;
+    margin: 0px 12px;
+    outline: none;
+    background: #ebebeb;
+}
+.mesg-container{
+    display: flex;
+    flex-direction: column;
+    background-color: #f6f6f6;
+    width: 400px;
+    height: 500px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.mesg-left,
+.mesg-right{
+list-style: none;
+padding: 8px 12px;
+margin: 12px;
+max-width: 250px;
+font-size: 18px;
+word-wrap: break-word;
+}
+.mesg-left{
+    border-radius: 20px 20px 20px 0px;
+    align-self: flex-start;
+    background-color: #fff;
+    box-shadow: -px 2px 4px #dcdcdc;
+}
+.mesg-right{
+    border-radius: 20px 20px 0px 20px;
+    align-self: flex-end;
+    background-color: #2d2d2d;
+    box-shadow: -px 2px 4px #dcdcdc;
+    color: #f6f6f6;
+}
+.mesg-left>p>span,
+.mesg-right>p>span{
+
+    display: block;
+    font-size: 12px;
+    font-style: italic;
+    margin-top: 4px;
+}
+.feedback{
+    font-size: 14px;
+    font-style: italic;
+    padding: 0px  16px 16px 16px;
+    color: #2d2d2d;
+    text-align: center;
+}
+.mesg-form{
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+}
+.mesg-input{
+    flex-grow: 1;
+    height: 48px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    padding: 0px 12px;
+    background-color: #fff;
+}
+.send-btn{
+    height: 48px;
+    font-size: 16px;
+    border: none;
+    padding: 0px 20px;
+    outline: none;
+    background-color: #fff;
+    cursor: pointer;
+}
+.v-divider{
+    height: 40px;
+    width: 2px;
+    background-color: #f6f6f6;
+}
+.clients-total{
+    margin: 20px 0px;
+    color: #7e7e7e;
+}

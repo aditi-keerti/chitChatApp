@@ -1,48 +1,32 @@
-const express=require('express');
-const http=require('http');
-const path=require("path")
-const {connection}=require('./db')
-const {userRoute}=require('./routes/user.route')
-const {WebSocketServer}=require('ws');
+const  express=require('express')
+const path=require('path');
+const app=express();
+const PORT=process.env.PORT||4000
+const server= app.listen(PORT,()=>{
+    console.log(`server on port ${PORT}`)
+})
 
-const app= express();
-const server=http.createServer(app);
-const wss=new WebSocketServer({server})
+const io=require('socket.io')(server)
 
-app.use(express.static(path.join(__dirname,"../frontend")));
+app.use(express.static(path.join(__dirname,'view')))
 
-wss.on("connection",(socket)=>{
-    console.log("new web Connection");
-    if(socket.readyState===WebSocketServer.OPEN){
-        socket.send("Welcome to the chat");
-    }
-   
-    // socket.send("hello from the web socket server")
-    socket.on('message',(mesg)=>{
-        wss.clients.forEach((client)=>{
-            if(client!==socket && client.readyState===WebSocketServer.OPEN){
-                client.send(mesg);
-            }
-        })
+io.on('connection',onConnected)
+
+let socketsConnected=new Set()
+
+function onConnected(socket){
+    console.log(socket.id)
+    socketsConnected.add(socket.id)
+
+   io.emit('clients-total',socketsConnected.size)
+
+    socket.on('disconnect',()=>{
+        console.log("socket disconnected",socket.id)
+        socketsConnected.delete(socket.id)
     })
-   
-})
 
-app.use(express.json());
-app.use('/users',userRoute);
-
-app.get('/',(req,res)=>{
-    res.send("this is home page")
-})
-
-
-server.listen(8080,async()=>{
-    try{
-       await connection;
-       console.log('connected to db')
-       console.log("Server is running at port 8080")
-    }catch(err){
-        console.log(err)
-    }
-   
-})
+    socket.on('message',(data)=>{
+        console.log(data)
+        socket.broadcast.emit('chat-mesg',data)
+    })
+}
