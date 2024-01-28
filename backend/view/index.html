@@ -12,11 +12,11 @@
     <h1 class="title">Chit-Chat</h1>
     <div class="main">
         <div class="name">
-           <span><i class="far fa-user"></i></span>
+           <span id="img-span"><i class="far fa-user"></i></span>
            <input type="text" id="name-input" value="anonymous" maxlength="20">
     </div>
     <ul class="mesg-container" id="mesg-container">
-        <li class="mesg-left">
+        <!-- <li class="mesg-left">
             <p class="mesg">Lorem <span>bluebird . 26 july 10:40</span>
             </p>
         </li>
@@ -28,7 +28,7 @@
             <p class="feedback" id="feedback">
                killer is typing a message
             </p>
-        </li>
+        </li> -->
     </ul>
     <form  class="mesg-form" id="mesg-form">
         <input type="text" name="mesg" id="mesg-input" class=" mesg-input">
@@ -43,8 +43,12 @@
 </div>
 <h3 class="clients-total" id="clients-total">Total Clients : 2</h3>
 
-<script src="/socket.io/socket.io.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment-with-locales.min.js" integrity="sha512-4F1cxYdMiAW98oomSLaygEwmCnIP38pb4Kx70yQYqRwLVCs3DbRumfBq82T08g/4LJ/smbFGFpmeFlQgoDccgg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+
 <script src="main.js"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment-with-locales.min.js" integrity="sha512-4F1cxYdMiAW98oomSLaygEwmCnIP38pb4Kx70yQYqRwLVCs3DbRumfBq82T08g/4LJ/smbFGFpmeFlQgoDccgg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- <script src="main.js"></script> -->
 </body>
 </html>

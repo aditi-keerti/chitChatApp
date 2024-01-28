@@ -1,11 +1,22 @@
-const socket=io()
+const socket = io('http://localhost:4000/'); // Update this URL
+
+
 
 // mesg-container
 
 const mesg_container=document.getElementById('mesg-container')
 const nameInput=document.getElementById('name-input')
+nameInput.value=localStorage.getItem('userName')
 const mesg_form=document.getElementById('mesg-form')
 const mesgInput=document.getElementById('mesg-input')
+const imgSpan=document.getElementById('img-span');
+const img=localStorage.getItem('userImg');
+if(img){
+    imgSpan.innerHTML="";
+    imgSpan.innerHTML=`<img id="img-tag" src=${img}>`
+}
+
+
 
 mesg_form.addEventListener('submit',(e)=>{
     e.preventDefault()
