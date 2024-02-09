@@ -24,12 +24,12 @@ const server = app.listen(PORT, async () => {
 
 const io = require('socket.io')(server, {
     cors: {
-        origin: 'http://127.0.0.1:5500'||'', // Allow all origins for now
+        origin: 'http://127.0.0.1:5501'||'http://localhost:4000', // Allow all origins for now
         methods: ['GET', 'POST'],
     },
 });
 
-app.use(express.static(path.join(__dirname, 'view')));
+app.use(express.static(path.join(__dirname, 'view/index.html')));
 
 io.on('connection', onConnected);
 
