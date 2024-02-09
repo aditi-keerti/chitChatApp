@@ -41,9 +41,22 @@ body{
     color: #7e7e7e;
     flex-grow: 1;
     border: none;
+    margin-top: 2%;
     margin-left: 2%;
     outline: none;
     background: #ebebeb;
+}
+#logout{
+    width: 20%;
+    height: 20%;
+    margin-top: 3%;
+    padding: 2%;
+    border-radius: 5%;
+}
+#logout:hover{
+    background: #2d2d2d;
+    color: #fff;
+    border: 1px solid #fff;
 }
 .mesg-container{
     display: flex;

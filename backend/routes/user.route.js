@@ -4,11 +4,18 @@ const bcrypt = require('bcrypt');
 const cookie_parser = require('cookie-parser');
 const jwt = require("jsonwebtoken");
 const multer = require('multer');
+const cors=require('cors');
+
+
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 const userRoute = express.Router();
+userRoute.use(cors({
+    origin: 'http://127.0.0.1:5501',
+    credentials: true,
+}));
 userRoute.use(cookie_parser());
 userRoute.use(express.urlencoded({ extended: true }));
 userRoute.use(express.json());
@@ -71,20 +78,20 @@ userRoute.post('/login', async (req, res) => {
     }
 });
 
+userRoute.options('/users/logout', cors()); 
 
-userRoute.post('/logout',(req,res)=>{
-    const access_token=req.headers.authorization?.split(" ")[1]
-    const refresh_token=req.headers.authorization?.split(" ")[1]
-    try{
+userRoute.post('/logout', (req, res) => {
+    const access_token = req.headers.authorization?.split(" ")[1];
+    const refresh_token = req.headers.refresh_token;  // assuming it's in headers
+    
+    try {
         res.clearCookie('refresh_token');
-        res.clearCookie('access_token')
-
-        res.status(200).json({mesg:"logout successfull"})
-
-    }catch(err){
-            res.status(400).json({error:err})
+        res.clearCookie('access_token');
+        res.status(200).json({ mesg: "logout successful" });
+    } catch (err) {
+        res.status(200).json({ mesg: "logout successful" });
     }
-})
+});
 
 module.exports={
     userRoute
