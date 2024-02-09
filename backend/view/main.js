@@ -1,5 +1,9 @@
-const socket = io('http://localhost:4000/'); // Update this URL
-
+// Socket.IO connection with user information
+const socket = io('http://localhost:4000', {
+    query: {
+        userId: localStorage.getItem('userName') // Use the user ID or any unique identifier
+    }
+});
 
 
 // mesg-container
@@ -18,23 +22,26 @@ if(img){
 
 
 
-mesg_form.addEventListener('submit',(e)=>{
-    e.preventDefault()
-    sendMessage()
-})
+mesg_form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    sendMessage();
+});
 
-function sendMessage(){
-    if(mesgInput.value==='') return
-    console.log(mesgInput.value)
-    const data={
-        name:nameInput.value,
-        mesg:mesgInput.value,
-        dateTime:new Date()
-    }
-    socket.emit('message',data)
-    addMessagetoUI(true,data);
-    mesgInput.value=''
+function sendMessage() {
+    if (mesgInput.value === '') return;
+    console.log(mesgInput.value);
+
+    const data = {
+        name: localStorage.getItem('userName'),
+        mesg: mesgInput.value,
+        dateTime: new Date()
+    };
+
+    socket.emit('message', data);
+    addMessagetoUI(true, data);
+    mesgInput.value = '';
 }
+
 
 socket.on('chat-mesg',(data)=>{
     clearFeedback()
@@ -66,22 +73,24 @@ socket.on('clients-total',(data)=>{
     clients_total.innerText=`Total Clients : ${data}`
 })
 
-mesgInput.addEventListener('focus',(e)=>{
-      socket.emit('feedback',{
-        feedback:`${nameInput.value} is typing`
-      })
-})
-mesgInput.addEventListener('keypress',(e)=>{
-    socket.emit('feedback',{
-        feedback:`${nameInput.value} is typing`
-      })
-})
-mesgInput.addEventListener('blur',(e)=>{
-    socket.emit('feedback',{
-        feedback:``
-      })
-})
+// Emit user is typing feedback when input is focused or key is pressed
+mesgInput.addEventListener('focus', () => {
+    socket.emit('feedback', {
+        feedback: `${localStorage.getItem('userName')} is typing`
+    });
+});
 
+mesgInput.addEventListener('keypress', () => {
+    socket.emit('feedback', {
+        feedback: `${localStorage.getItem('userName')} is typing`
+    });
+});
+
+mesgInput.addEventListener('blur', () => {
+    socket.emit('feedback', {
+        feedback: ''
+    });
+});
 socket.on('feedback',(data)=>{
     clearFeedback();
     let ele=` <li class="mesg-feedback">

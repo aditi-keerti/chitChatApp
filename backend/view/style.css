@@ -41,7 +41,7 @@ body{
     color: #7e7e7e;
     flex-grow: 1;
     border: none;
-    margin: 0px 12px;
+    margin-left: 2%;
     outline: none;
     background: #ebebeb;
 }
@@ -122,4 +122,11 @@ word-wrap: break-word;
 .clients-total{
     margin: 20px 0px;
     color: #7e7e7e;
+}
+#img-span img{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin: 0%;
+    padding: 0%;
 }

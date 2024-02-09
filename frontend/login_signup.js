@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             // Handle the response from the server (if needed)
             console.log(data);
+            alert("User Registered please login:)")
         })
         .catch(error => {
             console.error('Error:', error);

@@ -9,10 +9,6 @@ const PORT = process.env.PORT || 4000;
 // Apply CORS middleware before defining routes
 app.use(cors());
 
-// app.use('/', (req, res) => {
-//     res.send('home page');
-// });
-
 app.use(express.json());
 app.use('/users', userRoute);
 
@@ -28,7 +24,7 @@ const server = app.listen(PORT, async () => {
 
 const io = require('socket.io')(server, {
     cors: {
-        origin: 'http://127.0.0.1:5500', // Allow all origins for now
+        origin: 'http://127.0.0.1:5500'||'', // Allow all origins for now
         methods: ['GET', 'POST'],
     },
 });
