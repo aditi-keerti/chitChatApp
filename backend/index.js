@@ -11,6 +11,9 @@ app.use(cors({ origin: 'http://127.0.0.1:5501', credentials: true }));
 
 app.use(express.json());
 app.use('/users', userRoute);
+app.get("/",(req,res)=>{
+    res.sendFile('./view/index.html');
+})
 
 const server = app.listen(PORT, async () => {
     try {
